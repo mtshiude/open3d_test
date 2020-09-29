@@ -44,7 +44,7 @@ class point_control(object):
         pcd = mesh.sample_points_uniformly(number_of_points=1000)
         #input('r')
         #self.custom_draw_geometry_with_rotation(mesh)
-        self.custom_draw_geometry_with_custom_fov(mesh,np.pi*2)
+        self.custom_draw_geometry_with_custom_fov(mesh,90)
         #o3d.visualization.draw_geometries([pcd])
     
     def custom_draw_geometry_with_custom_fov(self,pcd, rotate_deg):
