@@ -42,9 +42,13 @@ class point_control(object):
         #o3d.visualization.draw_geometries([mesh])
         #sampling point cloud from sphere triangle mesh
         pcd = mesh.sample_points_uniformly(number_of_points=1000)
+        r = mesh.get_rotation_matrix_from_xyz((0.0,0.0,0.0))
+        r1 = mesh.get_rotation_matrix_from_xyz((np.pi/2,0.0,0.0))
+        
         #input('r')
         #self.custom_draw_geometry_with_rotation(mesh)
-        self.custom_draw_geometry_with_custom_fov(mesh,90)
+        self.custom_draw_geometry_with_custom_fov(mesh,r)
+        self.custom_draw_geometry_with_custom_fov(mesh,r1)
         #o3d.visualization.draw_geometries([pcd])
     
     def custom_draw_geometry_with_custom_fov(self,pcd, rotate_deg):
@@ -52,7 +56,8 @@ class point_control(object):
         vis.create_window()
         vis.add_geometry(pcd)
         ctr = vis.get_view_control()
-        ctr.rotate(rotate_deg,0)
+        #ctr.rotate(rotate_deg,0)
+        ctr.rotate(rotate_deg,enter=(0,0,0))
         print("Field of view %.2f" % ctr.get_field_of_view())
         print("rotate %.2f" % rotate_deg)
         vis.run()
